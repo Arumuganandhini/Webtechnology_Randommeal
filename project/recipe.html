@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Details</title>
+  <link rel="stylesheet" href="hi.css" />
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="form.html">Register</a>
+      <a href="contactus.html">Contact</a>
+      <a href="signup.html">Signup</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div id="recipe-container"></div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const mealId = params.get('id');
+      const recipeContainer = document.getElementById('recipe-container');
+
+      if (mealId) {
+        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+          .then(response => response.json())
+          .then(data => {
+            const meal = data.meals[0];
+            let html = `
+              <h2>${meal.strMeal}</h2>
+              <p><strong>Category:</strong> ${meal.strCategory}</p>
+              <p><strong>Area:</strong> ${meal.strArea}</p>
+              <p><strong>Tags:</strong> ${meal.strTags ? meal.strTags : "No tags available"}</p>
+              <h3>Instructions:</h3>
+              <p>${meal.strInstructions}</p>
+              <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+              <a href="${meal.strYoutube}" target="_blank">Watch Video</a>
+            `;
+            recipeContainer.innerHTML = html;
+          })
+          .catch(error => {
+            recipeContainer.innerHTML = "<p>Failed to load recipe details. Please try again later.</p>";
+          });
+      } else {
+        recipeContainer.innerHTML = "<p>No recipe selected.</p>";
+      }
+    });
+  </script>
+</body>
+</html>

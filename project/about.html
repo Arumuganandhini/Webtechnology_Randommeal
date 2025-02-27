@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Random Meal Generator</title>
+  <!-- Link to your existing stylesheet -->
+  <link rel="stylesheet" href="hi.css" />
+  <style>
+    body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: url('white.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color:black;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 800px;
+    right: 200px;
+    width: 100%;
+    padding: 20px 10%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 25px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar {
+    font-size: 25px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #0ef;
+}
+
+/* Overlay for readability */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    
+    z-index: -1;
+}
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="form.html">Register</a>
+      <a href="contactus.html">Contact</a>
+      <a href="signup.html">Signup</a>
+    </nav>
+  </header>
+     
+  <div class="container">
+    <h1>About the Random Meal Generator</h1>
+    <p>
+      Welcome to the Random Meal Generator! Our application aims to help you discover new and exciting recipes 
+      at the click of a button. Simply enter an ingredient in the search bar, and we'll provide a list of meals 
+      that use that ingredient. Each meal comes with detailed instructions, category, and even a link to a 
+      cooking video if available.
+    </p>
+
+    <h2>Why Use This App?</h2>
+    <ul>
+      <li><strong>Variety:</strong> Discover meals from various cuisines and cooking styles.</li>
+      <li><strong>Convenience:</strong> Quickly find recipes based on the ingredients you already have.</li>
+      <li><strong>Fun & Inspiration:</strong> Expand your culinary horizons with random suggestions.</li>
+    </ul>
+
+    <h2>How It Works</h2>
+    <ol>
+      <li>Type an ingredient into the search bar (e.g., “chicken” or “rice”).</li>
+      <li>Click the <strong>Search</strong> button to get a list of meals containing that ingredient.</li>
+      <li>Choose a meal and click <strong>Get Recipe</strong> to see detailed instructions and a YouTube tutorial.</li>
+    </ol>
+
+    <h2>Technologies Used</h2>
+    <p>
+      This application uses the <a href="https://www.themealdb.com" target="_blank">TheMealDB</a> API 
+      for recipe data. We built the front end with HTML, CSS, and JavaScript, making asynchronous calls 
+      (using <code>fetch</code>) to retrieve the recipes from the API.
+    </p>
+
+    <h2>Future Improvements</h2>
+    <p>
+      We plan to add:
+    </p>
+    <ul>
+      <li>User accounts with saved favorite recipes</li>
+      <li>Enhanced filtering options (by cuisine, diet, etc.)</li>
+      <li>Social sharing for recipes</li>
+    </ul>
+
+    <p>
+      Thank you for visiting our Random Meal Generator! We hope it inspires you to try something new 
+      in the kitchen. Happy cooking!
+    </p>
+  </div>
+</body>
+</html>

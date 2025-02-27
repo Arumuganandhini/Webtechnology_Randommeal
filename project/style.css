@@ -1,0 +1,65 @@
+/* Meal Details Modal */
+.meal-details {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Allow scrolling for larger content */
+    padding: 20px;
+}
+
+.meal-details.showRecipe {
+    display: flex;
+}
+
+.meal-details-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+    color: black;
+    position: relative;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+/* Adjust Image */
+.meal-details-content img {
+    width: 100%;
+    max-width: 100%; /* Prevent oversized images */
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Close Button */
+#recipe-close-btn {
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #800080;
+    background: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+}
+
+#recipe-close-btn:hover {
+    color: #9400D3;
+}
+
+/* Responsive Fix */
+@media (max-width: 600px) {
+    .meal-details-content {
+        max-width: 90%;
+        padding: 15px;
+    }
+}

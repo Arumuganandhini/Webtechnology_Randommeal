@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Website</title>
+  <style>
+    /* Google Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+    /* Body & General Styling */
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background: url('white.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: black;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 800px; /* Adjust this to 0 if you want a fully responsive header */
+      right: 200px;
+      width: 100%;
+      padding: 20px 10%;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 25px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .navbar {
+      font-size: 25px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 35px;
+      transition: 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #0ef;
+    }
+
+    /* Overlay for readability */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 90%;
+      height: 90%;
+      z-index: -1;
+    }
+
+    /* Each page is a 'box' */
+    .page {
+      display: none;                   /* hidden by default, shown via JS */
+      max-width: 600px;               /* limit width so it looks like a box */
+      margin: 120px auto;             /* center horizontally & push down from header */
+      padding: 20px;                  /* spacing inside the box */
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Inputs, Textareas, and Buttons */
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Error Messages */
+    .error {
+      color: red;
+      font-size: 12px;
+      display: none; /* shown only when invalid */
+    }
+
+    /* Container for main title, etc. */
+    .container h1 {
+      margin-top: 140px; /* push main title below fixed header */
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header class="header">
+    <nav class="navbar">
+      <!-- Adjust paths if files are named differently -->
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="form.html">Register</a>
+      <a href="contactus.html">Contact</a>
+      <a href="signup.html">Signup</a>
+    </nav>
+  </header>
+
+  <!-- Main Title -->
+  <div class="container">
+    <h1>Random Meal Generator</h1>
+  </div>
+
+  <!-- About Us Page -->
+  <div id="aboutUs" class="page">
+    <h2>About Us</h2>
+    <p>
+      Welcome to our website! We are a team of passionate individuals dedicated to 
+      providing excellent service. Our mission is to deliver top-quality products 
+      and outstanding customer service to all of our clients.
+    </p>
+    <p>
+      Our team works hard every day to create an exceptional experience for you. 
+      Whether you're here for a specific product or service, we promise to provide 
+      you with the best experience possible!
+    </p>
+    <p>
+      Feel free to reach out to us through our 
+      <a href="javascript:void(0);" onclick="showPage('contact')">Contact Us</a> 
+      page for any inquiries.
+    </p>
+  </div>
+
+  <!-- Contact Us Page -->
+  <div id="contact" class="page">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required>
+      <div id="nameError" class="error">Please enter your name.</div>
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required>
+      <div id="emailError" class="error">Please enter a valid email address.</div>
+
+      <label for="message">Your Message:</label>
+      <textarea id="message" name="message" required></textarea>
+      <div id="messageError" class="error">Please enter a message.</div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <!-- Sign Up Page -->
+  <div id="signup" class="page">
+    <h2>Create Account</h2>
+    <form id="signUpForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <div id="usernameError" class="error">Please enter a username.</div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="signupEmail" name="email" required>
+      <div id="signupEmailError" class="error">Please enter a valid email.</div>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <div id="passwordError" class="error">Please enter a password.</div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <script>
+    // Function to show selected page
+    function showPage(pageId) {
+      // Hide all pages
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.style.display = 'none');
+
+      // Show the selected page
+      document.getElementById(pageId).style.display = 'block';
+    }
+
+    // Show "About Us" by default
+    showPage('aboutUs');
+
+    // Contact Form Validation
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      // Clear previous error messages
+      document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+
+      let isValid = true;
+
+      // Name Validation
+      if (!document.getElementById('name').value) {
+        document.getElementById('nameError').style.display = 'block';
+        isValid = false;
+      }
+
+      // Email Validation
+      const email = document.getElementById('email').value;
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById('emailError').style.display = 'block';
+        isValid = false;
+      }
+
+      // Message Validation
+      if (!document.getElementById('message').value) {
+        document.getElementById('messageError').style.display = 'block';
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert('Thank you for your message!');
+        document.getElementById('contactForm').reset();
+      }
+    });
+
+    // Sign Up Form Validation
+    document.getElementById('signUpForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      // Clear previous error messages
+      document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+
+      let isValid = true;
+
+      // Username Validation
+      if (!document.getElementById('username').value) {
+        document.getElementById('usernameError').style.display = 'block';
+        isValid = false;
+      }
+
+      // Email Validation
+      const email = document.getElementById('signupEmail').value;
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById('signupEmailError').style.display = 'block';
+        isValid = false;
+      }
+
+      // Password Validation
+      if (!document.getElementById('password').value) {
+        document.getElementById('passwordError').style.display = 'block';
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert('Sign-up successful!');
+        document.getElementById('signUpForm').reset();
+      }
+    });
+  </script>
+</body>
+</html>
